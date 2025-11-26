@@ -1,0 +1,26 @@
+{
+  "name": "swarnim0308.github.io",
+  "version": "1.0.0",
+  "description": "My portfolio website",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swarnim0308/swarnim0308.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/swarnim0308/swarnim0308.github.io/issues"
+  },
+  "homepage": "https://github.com/swarnim0308/swarnim0308.github.io#readme",
+  "devDependencies": {
+    "vite": "^7.2.4"
+  }
+}
