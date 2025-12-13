@@ -22,5 +22,8 @@
   "homepage": "https://github.com/swarnim0308/swarnim0308.github.io#readme",
   "devDependencies": {
     "vite": "^7.2.4"
+  },
+  "dependencies": {
+    "aos": "^2.3.4"
   }
 }

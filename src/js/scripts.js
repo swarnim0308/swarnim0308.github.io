@@ -1,8 +1,62 @@
-// Import fonts (optional if not using CDN)
-// import '@fontsource/inter';
-// import '@fontsource/outfit';
+// Import AOS library
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { initContactForm } from './contact-form.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize AOS (Animate On Scroll)
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 100
+    });
+
+    // Initialize contact form
+    initContactForm();
+
+    // Dark Mode Toggle
+    const initTheme = () => {
+        // Check for saved theme preference or default to light mode
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        // Set initial theme
+        const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        updateThemeIcon(theme);
+    };
+
+    const toggleTheme = () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+    };
+
+    const updateThemeIcon = (theme) => {
+        const themeIcon = document.querySelector('.theme-toggle i');
+        if (themeIcon) {
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+    };
+
+    // Create and add theme toggle button
+    const createThemeToggle = () => {
+        const button = document.createElement('button');
+        button.className = 'theme-toggle';
+        button.setAttribute('aria-label', 'Toggle theme');
+        button.innerHTML = '<i class="fas fa-moon"></i>';
+        button.addEventListener('click', toggleTheme);
+        document.body.appendChild(button);
+    };
+
+    // Initialize theme
+    initTheme();
+    createThemeToggle();
+
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -19,8 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Update active state manually
                 document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
                 this.classList.add('active');
-
-                // Close mobile menu if needed (TODO: Implement mobile toggle logic)
             }
         });
     });
